@@ -6,11 +6,12 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],
+  standalone: true,
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'RXJS';
+  title = 'Hello, RXJS';
   private subscriptions: Subscription[] = [];
 
   constructor(public rxjs: RxjsService) { }

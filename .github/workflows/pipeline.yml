@@ -1,0 +1,29 @@
+name: Angular CI/CD
+
+on:
+  push:
+    branches: [main]  # or "master" if that's your branch
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v3
+
+    - name: 🟢 Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: 📦 Install Dependencies
+      run: npm ci
+
+    - name: 🔧 Build Angular App
+      run: npm run build -- --configuration=production
+
+    - name: ✅ Run Tests
+      run: npm test -- --watch=false --browsers=ChromeHeadless

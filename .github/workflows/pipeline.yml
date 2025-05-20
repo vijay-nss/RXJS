@@ -1,4 +1,4 @@
-name: RXJS 
+name: RXJS
 
 on:
   push:
@@ -27,4 +27,8 @@ jobs:
         run: npm run build -- --configuration=production
 
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/rxjs/browser
+        env:
+          NG_CLI_ANALYTICS: false
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npx angular-cli-ghpages --dir=dist/rxjs/browser --no-silent

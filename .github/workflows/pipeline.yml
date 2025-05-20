@@ -26,9 +26,13 @@ jobs:
       - name: Build Angular App
         run: npm run build -- --configuration=production
 
+      - name: Set Git Identity
+        run: |
+          git config user.email "vijay.honeybill@github.com"
+          git config user.name "vijay-nss"
+
       - name: Deploy to GitHub Pages
         env:
-          NG_CLI_ANALYTICS: false
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npx angular-cli-ghpages --dir=dist/rxjs/browser --no-silent
+          NG_CLI_ANALYTICS: false
+        run: npx angular-cli-ghpages --dir=dist/rxjs/browser --no-silent
